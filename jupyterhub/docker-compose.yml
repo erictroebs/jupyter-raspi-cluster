@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  hub:
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+    volumes:
+      - "./jupyterhub_config.py:/etc/jupyterhub_config.py"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/srv/homes:/srv/homes"
+    networks:
+      - hub_network
+    ports:
+      - 8000:8000
+    environment:
+      DOCKER_NETWORK_NAME: jupyterhub_hub_network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  hub_network:
+    driver: overlay
+    attachable: true
