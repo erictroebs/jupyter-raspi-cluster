@@ -42,8 +42,6 @@ Add to `/etc/exports`:
 /srv/homes  172.31.255.0/24(rw,sync,no_subtree_check,root_squash)
 ```
 
-Reboot just in case...
-
 
 ## Docker Installation (on every single Pi)
 
