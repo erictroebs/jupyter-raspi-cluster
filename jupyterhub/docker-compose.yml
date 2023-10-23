@@ -1,5 +1,16 @@
 version: "3"
 
+
+networks:
+  hub_network:
+    driver: overlay
+    attachable: true
+
+  registry_network:
+    driver: overlay
+    attachable: true
+
+
 services:
   hub:
     build:
@@ -21,7 +32,14 @@ services:
         constraints:
           - node.role == manager
 
-networks:
-  hub_network:
-    driver: overlay
-    attachable: true
+  registry:
+    image: registry:2
+    networks:
+      - registry_network
+    ports:
+      - 5000:5000
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
