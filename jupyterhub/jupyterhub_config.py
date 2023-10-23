@@ -27,13 +27,14 @@ c.JupyterHub.cleanup_servers = True
 c.JupyterHub.spawner_class = 'dockerspawner.SwarmSpawner'
 
 # timeouts
-c.SwarmSpawner.http_timeout = 60
-c.SwarmSpawner.start_timeout = 300
+c.SwarmSpawner.http_timeout = 120
+c.SwarmSpawner.start_timeout = 1800
 
 # allowed images
 c.SwarmSpawner.allowed_images = {
-    'Datenbanksysteme':  'jupyter-duckdb',
-    'SWI Prolog':        'jupyter-swi-prolog',
+    'Datenbanksysteme':  '172.31.255.1:5000/jupyter-duckdb',
+    'DuckDB':            '172.31.255.1:5000/jupyter-duckdb',
+    # 'SWI Prolog':        '172.31.255.1:5000/jupyter-swi-prolog',
 }
 
 # always pull the newest image version (default: skip)
@@ -86,7 +87,7 @@ def pre_spawn_hook(spawner):
                     'name': 'local',
                     'options': {
                         'type': 'nfs',
-                        'o': 'addr=127.0.0.1,nfsvers=4',
+                        'o': 'addr=172.31.255.1,nfsvers=4',
                         'device': f':/homes/{username}'  # no prefix for nfs mounts!!
                     }
                 }
@@ -116,7 +117,7 @@ c.JupyterHub.services = [{
     "command": [
         sys.executable,
         "-m", "jupyterhub_idle_culler",
-        "--timeout=1200",
+        "--timeout=1800",
     ],
     # "admin": True,
 }]
