@@ -83,6 +83,12 @@ Join swarm:
 docker swarm join --token <verylongtoken> 172.31.255.1:2377
 ```
 
+Add iptables rules:
+
+```bash
+./iptables-rules.sh
+```
+
 
 ## Setup JupyterHub (on first node)
 
