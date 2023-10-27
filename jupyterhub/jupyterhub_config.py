@@ -33,12 +33,11 @@ c.SwarmSpawner.start_timeout = 1800
 # allowed images
 c.SwarmSpawner.allowed_images = {
     'Datenbanksysteme':  '172.31.255.1:5000/jupyter-duckdb',
-    'DuckDB':            '172.31.255.1:5000/jupyter-duckdb',
-    # 'SWI Prolog':        '172.31.255.1:5000/jupyter-swi-prolog',
+    'SWI Prolog':        '172.31.255.1:5000/jupyter-swi-prolog',
 }
 
 # always pull the newest image version (default: skip)
-#c.SwarmSpawner.pull_policy = 'always'
+c.SwarmSpawner.pull_policy = 'always'
 
 # only spawn user environments on workers
 c.SwarmSpawner.extra_placement_spec = {
@@ -54,14 +53,10 @@ c.SwarmSpawner.extra_host_config = {
 }
 
 # memory limit
-# c.SwarmSpawner.mem_limit = '384M'
-
-c.SwarmSpawner.extra_host_config = {
-    'mem_limit': '384M'
-}
+c.SwarmSpawner.mem_limit = '256M'
 
 c.SwarmSpawner.environment = {
-    'MEM_LIMIT': str(384 * 1024 * 1024)
+    'MEM_LIMIT': str(256 * 1024 * 1024)
 }
 
 # persistence options
