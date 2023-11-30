@@ -32,7 +32,7 @@ apt install -y nfs-kernel-server
 Create folder:
 
 ```bash
-mkdir -p /mnt/nvme/nfs/jupyterhub-homes
+mkdir -p /srv/homes
 ```
 
 Add to `/etc/exports`:
