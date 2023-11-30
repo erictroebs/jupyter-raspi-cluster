@@ -43,6 +43,20 @@ Add to `/etc/exports`:
 ```
 
 
+## Advanced Settings (on every single Pi)
+Append to `/boot/config.txt`:
+
+```
+gpu_mem=16
+```
+
+Append to `/boot/cmdline.txt`:
+
+```
+cgroup_enable=memory swapaccount=1 cgroup_memory=1 cgroup_enable=cpuset
+```
+
+
 ## Docker Installation (on every single Pi)
 
 ```bash
